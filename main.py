@@ -75,7 +75,7 @@ def job():
 
 def main():
     print('Program Start!')
-    schedule.every().day.at("09:00").do(job)
+    schedule.every().day.at("02:19").do(job)
     while True:
         schedule.run_pending()
         time.sleep(30)
