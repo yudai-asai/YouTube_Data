@@ -1,7 +1,10 @@
 import urllib.request
 import json
+import settings
 
-url = 'https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxx'
+SLACK_URL = settings.SLACK_URL
+
+url = SLACK_URL
 
 def post_slack(msg):
     set_fileds = [{
