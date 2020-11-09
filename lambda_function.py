@@ -1,8 +1,9 @@
 import json
-import urllib
-import urllib.request
+import request
 from googleapiclient.discovery import build 
 import settings
+import schedule
+import time
 
 
 YouTube_API_KEY = settings.YouTube_API_KEY
@@ -64,6 +65,12 @@ def post_slack(message):
     with urllib.request.urlopen(request) as response:
         response_body = response.read().decode('utf-8')
 
-def lambda_handler(event, context):
+def job():
     message = statistics_video()
     post_slack(f'直近5動画の閲覧数成績レポート\n```{message}```')
+
+def main():
+    schedule.every().day.at("09:00").do(job)
+    while True:
+        schedule.run_pending()
+        time.sleep(30)
