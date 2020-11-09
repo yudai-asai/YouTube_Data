@@ -4,6 +4,7 @@ from urllib import request
 from googleapiclient.discovery import build 
 import settings
 import schedule
+import datetime
 import time
 
 
@@ -68,10 +69,15 @@ def post_slack(message):
 
 def job():
     message = statistics_video()
+    today = datetime.date.today()
     post_slack(f'直近5動画の閲覧数成績レポート\n```{message}```')
+    print(f'{today} Done')
 
 def main():
+    print('Program Start!')
     schedule.every().day.at("09:00").do(job)
     while True:
         schedule.run_pending()
         time.sleep(30)
+if __name__ == '__main__':
+    main()
