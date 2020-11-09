@@ -22,7 +22,7 @@ def post_slack(msg):
     }
 
     method = 'POST'
-    request_headers = { 'Content-Type': 'application/json; charset=utf-8' }
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
     body = json.dumps(data).encode("utf-8")
     request = urllib.request.Request(
         url=url, 
