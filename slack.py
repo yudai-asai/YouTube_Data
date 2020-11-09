@@ -28,7 +28,7 @@ def post_slack(msg):
         url=url, 
         data=body, 
         method=method,
-        headers=request_headers 
+        headers=headers 
     )
     urllib.request.urlopen(request)
 
