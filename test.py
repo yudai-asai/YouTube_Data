@@ -6,6 +6,7 @@ import settings
 import schedule
 import datetime
 import time
+import slackweb
 
 
 YouTube_API_KEY = settings.YouTube_API_KEY
@@ -54,23 +55,11 @@ def statistics_video():
     
   return message
 
-def post_slack(message):
-    send_data = {
-        "text": message,
-    }
-    send_text = json.dumps(send_data)
-    request = urllib.request.Request(
-        SLACK_URL, 
-        data=send_text.encode('utf-8'), 
-        method="POST"
-    )
-    with urllib.request.urlopen(request) as response:
-        response_body = response.read().decode('utf-8')
-
 def job():
     message = statistics_video()
     today = datetime.date.today()
-    post_slack(f'直近5動画の閲覧数成績レポート\n```{message}```')
+    slack = slackweb.Slack(url=SLACK_URL)
+    slack.notify(text=f'直近5動画の閲覧数成績レポート\n```{message}```')
     print(f'{today} Done')
 
 if __name__ == '__main__':
