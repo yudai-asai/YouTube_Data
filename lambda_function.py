@@ -2,7 +2,12 @@ import json
 import urllib
 import urllib.request
 from googleapiclient.discovery import build 
+import settings
 
+
+YouTube_API_KEY = settings.YouTube_API_KEY
+YouTube_CHANNEL_ID = settings.YouTube_CHANNEL_ID
+SLACK_URL = settings.SLACK_URL
 #参考：https://qiita.com/ryoya41/items/dd1fd4c1427ece787eea
 
 def statistics_video():
