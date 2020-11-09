@@ -1,5 +1,6 @@
 import json
-import request
+import urllib
+from urllib import request
 from googleapiclient.discovery import build 
 import settings
 import schedule
