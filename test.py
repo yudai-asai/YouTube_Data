@@ -73,11 +73,5 @@ def job():
     post_slack(f'直近5動画の閲覧数成績レポート\n```{message}```')
     print(f'{today} Done')
 
-def main():
-    print('Program Start!')
-    schedule.every().day.at("02:19").do(job)
-    while True:
-        schedule.run_pending()
-        time.sleep(10)
 if __name__ == '__main__':
-    main()
+    job()
